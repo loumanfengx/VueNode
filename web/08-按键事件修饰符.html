@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>08-按键事件修饰符</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+</head>
+<!--按键事件
+ v-on:keyup.enter :按回车键触发事件
+ v-on:keyup.delete ：按删除键可触发事件-->
+<body>
+<div id="app">
+    <form action="">
+        <div>
+            姓名：<input type="text" v-model="name" v-on:keyup.delete="handleDel">
+        </div>
+        <div>
+            密码：<input type="text" v-model="password" v-on:keyup.enter="handleSub()">
+        </div>
+        <div>
+            <input type="button" value="提交" v-on:click="handleSub()">
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name:'',
+            password:''
+        },
+        methods: {
+            handleSub:function () {
+                console.log(this.name, this.password);
+            },
+            handleDel:function () {
+                this.name = '';
+            }
+        }
+    });
+</script>
+</body>
+</html>

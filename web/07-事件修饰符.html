@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>07-事件修饰符</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-cloak>{{num}}</div>
+    <div v-on:click="active2()">
+        <button v-on:click.stop="active1()">点击</button>
+    </div>
+    <div>
+        <a href="www.baidu.com" v-on:click.prevent>百度</a>
+    </div>
+</div>
+<!--两种方式：
+1.v-on:click='事件名'或者v-on:click='事件名()'
+2.@click='事件名' 或者@click='事件名()'
+-->
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            num: 0
+        },
+        methods: {
+            //点击active1会触发active2  原因：事件冒泡
+            active2: function () {
+                this.num++;
+            },
+            //v-on:click.stop 阻止事件冒泡
+            active1:function () {
+
+            }
+        }
+    });
+</script>
+</body>
+</html>

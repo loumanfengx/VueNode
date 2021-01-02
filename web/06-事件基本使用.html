@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>06-事件基本使用</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-cloak>{{num}}</div>
+     <button v-on:click="active1(1,2,$event)">点击1</button>
+     <button @click="active2">点击2</button>
+</div>
+<!--两种方式：
+1.v-on:click='事件名'或者v-on:click='事件名()'
+2.@click='事件名' 或者@click='事件名()'
+-->
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            num: 0
+        },
+        methods: {
+            active1: function (a1,a2,event) {
+                console.log(a1,a2,event.target.tagName);//1 2 "BUTTON"获取标签名
+                //this.num++;
+            },
+            active2: function (event) {
+                console.log(event.target.innerHTML);//点击2
+            }
+
+        }
+    });
+</script>
+</body>
+</html>

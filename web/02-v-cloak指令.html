@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-v-cloak指令</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div v-cloak>{{msg}}</div>
+    <div v-cloak>{{1+1}}</div>
+    <div v-cloak>{{msg+'----'+1+1}}</div>
+</div>
+<!--v-cloak指令解决插值表达式闪动问题（有时在浏览器刷新中会先出现差值表达式再出现其中的值）-->
+<!--用法：在差值表达式的标签内加入 v-cloak 指令-->
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            msg:'hello vue'
+        }
+    });
+</script>
+</body>
+</html>

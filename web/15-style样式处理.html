@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>15-style样式处理</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div v-bind:style="{width:'100px',height:'200px',border:'1px solid red'}">样式1</div>
+    <div v-bind:style="objStyles">样式2</div>
+    <div v-bind:style="[objStyles,overrideStyles]">样式3</div>
+    <div><button v-on:click="handle">切换</button></div>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            objStyles:{
+                width:'200px',
+                height:'100px',
+                border:'1px solid red'
+            },
+            overrideStyles:{
+                background:'pink'
+            }
+        },
+        methods: {
+            handle: function () {
+                this.objStyles.width = '100px';
+                this.overrideStyles.background = 'white';
+            }
+        }
+    });
+</script>
+</body>
+</html>

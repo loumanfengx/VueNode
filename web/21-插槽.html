@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<!--待办事项-->
+<div id="app">
+    <todo>
+        <!--标题-->
+        <todo-title slot="todo-title" :title1="title"></todo-title>
+        <!--内容-->
+        <todo-item slot="todo-item" v-for="(item,index) in items" :item1="item" v-on:remove="removeEle('index')" :index="index"></todo-item>
+    </todo>
+</div>
+</body>
+<script>
+    // 待办事项组件
+    Vue.component('todo',{
+       template: '<div><slot name="todo-title"></slot><ul><slot name="todo-item"></slot></ul></div>'
+    });
+    // 标题组件
+    Vue.component('todo-title',{
+        props: ['title1'],
+        template: '<div>{{title1}}</div>'
+    });
+    //内容组件
+    Vue.component('todo-item', {
+        props: ['item1','index'],
+        template: '<li>{{index}}-->{{item1}}<button v-on:click="remove">删除</button></li>',
+        methods: {
+           remove:function (index) {
+               this.$emit('remove',index)
+           }
+        }
+    });
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            title:'标题',
+            items: ['迪丽热巴', '古力娜扎', '马尔扎哈']
+        },
+        methods: {
+            removeEle:function (index) {
+                this.items.splice(index, 1);
+            }
+        }
+    });
+</script>
+</html>

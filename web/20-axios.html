@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+</head>
+<body>
+<ul id="wai">
+    <!--    自定义组件标签名-->
+    <div>姓名：{{info.name}}</div>
+    <div>年龄：{{info.age}}</div>
+    <div>地址：{{info.address.country}}{{info.address.city}}{{info.address.area}}</div>
+    <ul>爱好：
+        <li v-for="hobby in info.hobbys">{{hobby.name}}-->{{hobby.description}}</li>
+    </ul>
+
+</ul>
+</body>
+<script>
+
+    var vm = new Vue({
+        el: '#wai',
+        data() {
+            return{
+                info:{
+                    name: '',
+                    age: '',
+                    address: {},
+                    hobbys: []
+                }
+            }
+        },
+        mounted() {
+            axios
+                .post('data.json')
+                .then(reponse=>this.info=reponse.data)
+        }
+    })
+</script>
+</html>

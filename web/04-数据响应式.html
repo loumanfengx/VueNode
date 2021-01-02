@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-数据响应式</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-cloak>{{msg}}</div>
+    <div v-once>{{msg1}}</div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            msg:'hello vue',
+            msg1:'hello vue1',
+
+        }
+    });
+</script>
+</body>
+</html>
